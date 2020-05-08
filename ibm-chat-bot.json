@@ -1,0 +1,239 @@
+{
+  "intents": [
+    {
+      "intent": "no",
+      "examples": [
+        {
+          "text": "nothing"
+        },
+        {
+          "text": "no"
+        },
+        {
+          "text": "nothanks"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "course",
+      "examples": [
+        {
+          "text": "top free courses"
+        },
+        {
+          "text": "courses"
+        },
+        {
+          "text": "show me some websites"
+        },
+        {
+          "text": "show me free courses"
+        },
+        {
+          "text": "free courses"
+        },
+        {
+          "text": "course"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "thankyou",
+      "examples": [
+        {
+          "text": "thanks"
+        },
+        {
+          "text": "Thank you for helping"
+        },
+        {
+          "text": "thanks's for helping"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "websites",
+      "examples": [
+        {
+          "text": "top websites for learning"
+        },
+        {
+          "text": "websites"
+        },
+        {
+          "text": "hii can i get some educational websites"
+        },
+        {
+          "text": "educational websites"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "webhooks": [
+    {
+      "url": "https://sites.google.com/prod/view/venkatanarayana",
+      "name": "main_webhook",
+      "headers": []
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "thank you",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Isthere anything else which i could help you ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_6_1588923959402"
+      },
+      "conditions": "#thankyou",
+      "dialog_node": "node_3_1588923634053",
+      "previous_sibling": "node_2_1588922916796"
+    },
+    {
+      "type": "standard",
+      "title": "courses",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Here is all you can do, free courses along with free certification in these websites\nGo to the link : www.tiny.cc/narayana"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_3_1588923634053"
+      },
+      "conditions": "#course",
+      "dialog_node": "node_2_1588922916796",
+      "previous_sibling": "node_9_1588922759221"
+    },
+    {
+      "type": "standard",
+      "title": "websites",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hey! i have found a free webpage where you can find all websites in oneplace www.tiny.cc/narayana"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#websites",
+      "dialog_node": "node_9_1588922759221",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "finish",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank you for visiting\nHave a Nice Day !"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#no",
+      "dialog_node": "node_6_1588923959402",
+      "previous_sibling": "node_3_1588923634053"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "I didn't understand. You can try rephrasing.",
+            "Can you reword your statement? I'm not understanding.",
+            "I didn't get your meaning."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_6_1588923959402",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "text": {
+          "values": [
+            "Hello. How can I help you?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
